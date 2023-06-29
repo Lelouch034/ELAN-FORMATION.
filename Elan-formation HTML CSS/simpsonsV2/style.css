@@ -1,0 +1,207 @@
+/* *****GENERAL**** */
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+/* *****GENERAL-p-balise**** */
+
+p {
+    text-align: justify;
+}
+
+body {
+    background-color: yellow;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: white;
+}
+
+/* ******HEADER***** */
+
+header h2 {
+    font-size: 2em;
+}
+
+h2,
+nav,
+aside,
+a {
+    background-color: dodgerblue;
+    color: #fff;
+}
+
+/* ******HEADER_IMAGES**** */
+
+img {
+    width: 100%;
+    display: grid;
+}
+
+/* ******HEADER****** */
+
+/* ******MAIN_NAV****** */
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    border-bottom: 3px dashed white;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0 10px;
+}
+
+/* ******MAIN****** */
+
+.mid-page {
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    padding: 0 20px;
+    justify-content: space-between;
+}
+
+h1 {
+    color: orange;
+    margin: 18px;
+    font-size: 2em;
+}
+
+/* *****MAIN_ARTICLE***** */
+
+article {
+    width: 100%;
+}
+
+/* *******MAIN_ASIDE****** */
+
+aside {
+    padding: 10px 33px;
+    width: 100%;
+}
+
+figcaption {
+    margin-top: 10px;
+}
+
+aside img {
+    border: 2px solid white;
+}
+
+h2,
+footer {
+    text-align: center;
+}
+
+aside p {
+    font-size: 1.2em;
+}
+
+aside h4 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+/* ********MAIN_IMAGES********* */
+
+.images {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+
+.images img {
+    width: 30%;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+/*  
+*****FOOTER****** */
+
+footer {
+    background-color: dodgerblue;
+    color: white;
+    margin-top: 20px;
+    padding: 5px 0;
+    font-size: 1.2em;
+}
+
+/* ****** RESPONSIVE STYLES ****** */
+
+ .menu-hamburger {
+    position: absolute;
+    top: 50px;
+    right: 30px;
+    width: 50px;
+    display: none;
+}
+
+
+
+@media screen and (max-width: 900px) {
+    
+    .container {
+        width: 100%;
+    }
+
+    .menu-hamburger {
+        display: block;
+    }
+   
+
+     .nav-links  {
+        position: absolute;
+        background-color: #0089ff8c;
+        width: 100%;
+        height: 111vh;
+        display: flex;
+        justify-content: center;
+        backdrop-filter: blur(3px);
+        margin-left: -200%;
+        transition: all 0.5s;
+    }
+
+   .mobile-menu {
+        margin-left: 0;
+    }
+    
+    .nav-links ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+    nav a {
+        background-color: transparent;
+    }
+
+    nav {
+        height: 0;
+        border-bottom: 0px dashed white;
+    }
+   
+
+    nav  li {
+        margin: 25px 0px;
+        font-size: 1.5em;
+    }
+}
