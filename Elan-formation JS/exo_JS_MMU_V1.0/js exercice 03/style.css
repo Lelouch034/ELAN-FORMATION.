@@ -1,0 +1,28 @@
+#board {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.box {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    font-size: 3em;
+    text-align: center;
+    line-height: 75px;
+    margin: 5px;
+    animation: appear 1s;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-clicked {
+    
+    color: #aaa;
+}
+
+
+

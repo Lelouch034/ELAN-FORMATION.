@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="board"></div>
+
+    
+    <script>
+        
+const box = document.createElement("div");
+box.classList.add("box");
+
+
+for (let i = 0; i <= 8; i++) {
+    let newbox = box.cloneNode();
+    board.appendChild(newbox);
+
+    newbox.addEventListener("click", function() {
+        let player = 'X';
+          if (newbox.textContent == '') {
+            newbox.textContent =  player;
+             player = (player == 'X') ? 'O' : 'X';  
+         }
+         else if (player ==  'X') {
+             player = 'O'
+             newbox.textContent =  player;
+         }
+    });
+}
+    </script>
+</body>
+</html>
