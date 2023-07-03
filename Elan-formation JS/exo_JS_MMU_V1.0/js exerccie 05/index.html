@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur Franc</title>
+</head>
+<body>
+    <label for="input">Entrez un chiffre :</label>
+    <input type="text" id="input" placeholder="Entrez un chiffre">
+    <button onclick="convertToFranc()">Convertir</button>
+    <p id="result"></p>
+
+    <script>
+        function convertToFranc() {
+            
+            var input = document.getElementById("input").value;
+
+        
+            if (isNaN(input)) {
+                alert("Veuillez entrer un nombre valide !");
+                return;
+            }
+
+            
+            var franc = parseFloat(input) * 6.51; 
+
+           
+            document.getElementById("result").textContent = franc.toFixed(2) + " francs";
+        }
+    </script>
+</body>
+</html>
