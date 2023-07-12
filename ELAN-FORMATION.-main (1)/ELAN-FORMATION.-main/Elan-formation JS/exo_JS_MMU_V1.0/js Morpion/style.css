@@ -1,0 +1,57 @@
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 630px;
+    margin: 0 auto;
+}
+
+body {
+    background-color: #C3EDC0;
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    font-size: 3em;
+    text-align: center;
+    line-height: 200px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-clicked {
+    color: #164B60;
+}
+
+#message {
+    position: fixed;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4em;
+    text-align: center;
+    width: 100%;
+    z-index: 9999;
+}
+
+#turn {
+    position: fixed;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3em;
+    text-align: center;
+    width: 100%;
+    z-index: 9999;
+}
+
+#resetButton {
+    
+    width: 100px;
+    font-size: 1.2em;
+    margin-left: 500px;
+}

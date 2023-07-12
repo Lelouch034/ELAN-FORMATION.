@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="board"></div>
+
+    <script src="index.js"></script>
+    <script>
+        const board = document.getElementById("board");
+        const box = document.createElement("div");
+        box.classList.add("box");
+
+        var colors = ['#C3EDC0', '#FF9B9B', '#F5F5F5', '#164B60', '#FF2171', '#525FE1', '#F86F03', '#2B2730', '#9BCDD2', '#A7ECEE', '#E4A5FF', '#F6FA70', '#884A39', '#CD1818', '#4942E4', '#E55807', '#B70404'];
+
+        function createBox(i) {
+            let newbox = box.cloneNode();
+            newbox.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            board.appendChild(newbox);
+
+            newbox.addEventListener("click", function() {
+                newbox.classList.add("box-color");
+            });
+        }
+
+        function createBoxesWithDelay(i) {
+            setTimeout(() => {
+                createBox(i);
+            }, i * 100);
+        }
+
+        for (let i = 0; i <= 100; i++) {
+            createBoxesWithDelay(i);
+        }  
+    </script>
+</body>
+</html>

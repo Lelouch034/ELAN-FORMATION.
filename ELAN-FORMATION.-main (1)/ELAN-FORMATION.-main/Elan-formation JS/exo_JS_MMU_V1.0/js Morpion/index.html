@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Morpion</title>
+</head>
+<body>
+    <div id="board"></div>
+    <div id="message"></div>
+    <div id="turn"></div>
+
+    <button id="resetButton">Reset</button>
+    <script>
+        const board = document.getElementById("board");
+        const message = document.getElementById("message");
+        const turn = document.getElementById("turn");
+        const resetButton = document.getElementById("resetButton");
+
+        const box = document.createElement("div");
+        box.classList.add("box");
+
+        let player = 'X';
+        let gameOver = false;
+
+        const gameState = ['', '', '', '', '', '', '', '', ''];
+
+        const winningCombinations = [
+            [0, 1, 2], // première ligne
+            [3, 4, 5], // deuxième ligne
+            [6, 7, 8], // troisième ligne
+            [0, 3, 6], // première colonne
+            [1, 4, 7], // deuxième colonne
+            [2, 5, 8], // troisième colonne
+            [0, 4, 8], // première diagonale
+            [2, 4, 6]  // deuxième diagonale
+        ];
+
+        function showTurnMessage() {
+            turn.style.display = "block";
+        }
+
+        function hideTurnMessage() {
+            turn.style.display = "none";
+        }
+
+        let boxClickHandlers = [];
+
+        function boxClickHandler() {
+            if (this.textContent === '' && !gameOver) {
+                this.textContent = player;
+                this.classList.add("box-clicked");
+                gameState[this.dataset.index] = player;
+
+                if (checkWin(player)) {
+                    message.textContent = `Le joueur ${player} a gagné !`;
+                    gameOver = true;
+                    hideTurnMessage();
+                } else if (checkDraw()) {
+                    message.textContent = "Match nul !";
+                    gameOver = true;
+                    hideTurnMessage();
+                } else {
+                    player = (player === 'X') ? 'O' : 'X';
+                    turn.textContent = `C'est au tour du joueur ${player}`;
+                }
+            }
+        }
+
+        resetButton.addEventListener("click", function() {
+            const boxes = document.getElementsByClassName("box");
+
+            // Supprimer l'écouteur d'événement pour chaque carré
+            for (let i = 0; i < boxes.length; i++) {
+                const box = boxes[i];
+                box.textContent = '';
+                box.classList.remove("box-clicked");
+                box.removeEventListener("click", boxClickHandlers[i]);
+            }
+
+            player = 'X';
+            gameOver = false;
+            message.textContent = '';
+            turn.textContent = `C'est au tour du joueur ${player}`;
+            showTurnMessage();
+
+            // Vider le contenu du conteneur de la grille
+            board.innerHTML = '';
+
+            // Réinitialiser l'état du jeu
+            gameState.fill('');
+
+            // Réinitialiser les gestionnaires d'événements
+            boxClickHandlers = [];
+            for (let i = 0; i < 9; i++) {
+                let newbox = box.cloneNode();
+                newbox.dataset.index = i;
+                board.appendChild(newbox);
+
+                const boxClickHandler = function() {
+                    if (newbox.textContent === '' && !gameOver) {
+                        newbox.textContent = player;
+                        newbox.classList.add("box-clicked");
+                        gameState[newbox.dataset.index] = player;
+
+                        if (checkWin(player)) {
+                            message.textContent = `Le joueur ${player} a gagné !`;
+                            gameOver = true;
+                            hideTurnMessage();
+                        } else if (checkDraw()) {
+                            message.textContent = "Match nul !";
+                            gameOver = true;
+                            hideTurnMessage();
+                        } else {
+                            player = (player === 'X') ? 'O' : 'X';
+                            turn.textContent = `C'est au tour du joueur ${player}`;
+                        }
+                    }
+                };
+
+                newbox.addEventListener("click", boxClickHandler);
+                boxClickHandlers.push(boxClickHandler);
+            }
+        });
+
+        turn.textContent = `C'est au tour du joueur ${player}`;
+
+        function checkWin(player) {
+            for (let combination of winningCombinations) {
+                const [a, b, c] = combination;
+                if (
+                    gameState[a] === player &&
+                    gameState[b] === player &&
+                    gameState[c] === player
+                ) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function checkDraw() {
+            return !gameState.includes('');
+        }
+
+        // Créer les carrés du jeu
+        for (let i = 0; i < 9; i++) {
+            let newbox = box.cloneNode();
+            newbox.dataset.index = i;
+            board.appendChild(newbox);
+
+            const boxClickHandler = function() {
+                if (newbox.textContent === '' && !gameOver) {
+                    newbox.textContent = player;
+                    newbox.classList.add("box-clicked");
+                    gameState[newbox.dataset.index] = player;
+
+                    if (checkWin(player)) {
+                        message.textContent = `Le joueur ${player} a gagné !`;
+                        gameOver = true;
+                        hideTurnMessage();
+                    } else if (checkDraw()) {
+                        message.textContent = "Match nul !";
+                        gameOver = true;
+                        hideTurnMessage();
+                    } else {
+                        player = (player === 'X') ? 'O' : 'X';
+                        turn.textContent = `C'est au tour du joueur ${player}`;
+                    }
+                }
+            };
+
+            newbox.addEventListener("click", boxClickHandler);
+            boxClickHandlers.push(boxClickHandler);
+        }
+    </script>
+</body>
+</html>
