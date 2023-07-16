@@ -4,11 +4,7 @@ session_start();
 $nombreProduits = isset($_SESSION['products']) ? count($_SESSION['products']) : 0;
 
 if (isset($_POST['supprimer'])) {
-    $index = $_POST['supprimer']; // Index du produit à supprimer
-    if (isset($_SESSION['products'][$index])) {
-        unset($_SESSION['products'][$index]); // Supprimer le produit de la session
-        $_SESSION['products'] = array_values($_SESSION['products']); // Réorganiser les index des produits restants
-    }
+    unset($_SESSION['products']);
     header("Location: recap.php");
     exit();
 }
@@ -37,7 +33,7 @@ if (isset($_POST['modifier_quantite'])) {
     <title>Récapitulation des produits</title>
 </head>
 <body>
-    <p>Nombre de produits en session : <?php echo $nombreProduits; ?></p>
+    <p style="text-align: center;">Nombre de produits en session : <?php echo $nombreProduits; ?></p>
 
     <?php
     if (!isset($_SESSION['products']) || empty($_SESSION['products'])) {
@@ -58,6 +54,7 @@ if (isset($_POST['modifier_quantite'])) {
                     "<th>Action</th>",
                 "</tr>",
             "</thead>",
+
             "<tbody>";
 
         $totalGeneral = 0;

@@ -64,7 +64,7 @@ if (isset($_POST['submit'])){
         </p>
     </form>
 
-    <p>Nombre de produits en session : <?php echo $nombreProduits; ?></p>
+    <p style="text-align: center;">Nombre de produits en session : <?php echo $nombreProduits; ?></p>
 
 </body>
 </html>
